@@ -1,0 +1,42 @@
+body{
+	background-color: #7C95AC;
+	font-family: Georgia, Times, "Times New Roman", serif;
+}
+.header{
+	background: #2C4762;
+	margin: 0 auto;
+	padding:30px;
+	width:  498px;
+	font-style: italic;
+	font-size: 28px;
+	color: #657788;
+	text-align: center;
+}
+form{
+	background: #E1F0FA;
+	width: 498px;
+	padding: 30px;
+	margin:  0 auto;	
+}
+
+form input {
+	background: #F7FCFF;
+	border: 1px solid #97B5D2;
+	color:  #25313c;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 28px;
+	width: 480px;
+}
+
+form .button{
+	display:  block;
+}
+
+p{
+	text-align: center;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 28px;
+	background: #E1F0FA;
+	margin-top: 25%;
+	margin-bottom: 25%;
+}
