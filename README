@@ -1,0 +1,12 @@
+Simple WSDL-to-REST Webservice and UI for the GeoIPService
+(http://www.webservicex.net/WCF/ServiceDetails.aspx?SID=46)
+
+
+As well as providing a simple user interface for looking up the
+location of an IP address through an HTML form, 
+the API supports the following methods:
+
+/api/location.<FORMAT>?ip=<IP-ADDRESS>
+
+Where <FORMAT> is the desired output format.
+Current options are .xml and .json
