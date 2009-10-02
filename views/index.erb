@@ -2,14 +2,63 @@
     <head>
         <title>GeoIP WSDL-to-REST Service</title>
         <link href="/main.css" rel="stylesheet" type="text/css" />
+        <script src="http://www.google.com/jsapi"></script>
+      
+        <script type="text/javascript" charset="utf-8">
+	          google.load("maps", "2.x");
+	          google.load("jquery", "1.3.2");
+        </script>
+
+       
+        <script type="text/javascript" charset="utf-8">
+        var ipAddress = "<%= ip %>";
+                        
+            function loadLocation(countryName){
+                var key = "ABQIAAAAEpqJn3Bpu5vedchmGSC3VBQ8nda2l8z-oXOZMhvo4DA8FzaARRQ9_Y3bFY_73HOsVqR7LWbfwKT6Uw";
+$.getJSON("http://maps.google.com/maps/geo?q="+countryName+"&key="+key+"&sensor=false&output=json&oe=utf-8&callback=?",
+                    function(data, textStatus){
+                        var locationLat = data.Placemark[0].Point.coordinates[1]
+                        var locationLong = data.Placemark[0].Point.coordinates[0];
+                        var map = new GMap2(document.getElementById('map'));
+                        map.setCenter(new GLatLng(locationLat, locationLong), 6);
+                        });
+                }
+        
+            $(document).ready(function(){
+
+                
+                $('form').submit(function(e){
+                    $('.error').hide();
+                    $('#map').show();
+                    
+                    if($("input#ip").val() == ""){
+                        $('.error').show();
+                        $('#map').hide();
+                        $("input#ip").focus();
+                        return false;
+                    }
+                    
+                    e.preventDefault();
+                    $.post("/api/location.json?ip="+ipAddress, $('form').serialize(), function(json){
+                        loadLocation(json.CountryName);
+                    }, "json");
+                });
+            });
+                
+
+            </script>
+
         </head>
         <body>
             <div class="header">Type in an IP-Address</div>
             <form action="/location" method="POST">
-                <input type="text" name="ip"/>
+                <input type="text" id="ip" name="ip"/ value="<%= ip %>">
+                <label class="error" for="ip" id="ip_error">This field is required.</label>  
                 <div class="button">
                     <input type="submit" value="Go!"/>
                 </div>
             </form>
+            <div id="map">
+            </div>
         </body>
 </html>

@@ -9,7 +9,8 @@ wsdl = $URL
 driver = SOAP::WSDLDriverFactory.new(wsdl).create_rpc_driver
 
 get '/' do
-    erb :index
+    ip = @env['REMOTE_ADDR']
+    erb :index, :locals => {:ip => ip}
 end
 
 post '/location' do
@@ -18,7 +19,7 @@ post '/location' do
     erb :location, :locals => {:ip => params[:ip], :country => result["CountryName"]}
 end
 
-get '/api/location.:format' do
+post '/api/location.:format' do
     request = driver.getGeoIP('IPAddress' => params[:ip])
     result = request.getGeoIPResult()
     location = result["CountryName"]
