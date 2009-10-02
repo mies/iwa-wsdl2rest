@@ -9,7 +9,9 @@ wsdl = $URL
 driver = SOAP::WSDLDriverFactory.new(wsdl).create_rpc_driver
 
 get '/' do
-    ip = @env['REMOTE_ADDR']
+    #ip = request.env['HTTP_X_REAL_IP']
+    ipRange = request.env['REMOTE_ADDR']
+    ip = ipRange[0]
     erb :index, :locals => {:ip => ip}
 end
 
