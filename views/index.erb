@@ -14,7 +14,7 @@
         var ipAddress = "<%= ip %>";
                         
             function loadLocation(countryName){
-                var key = "ABQIAAAAEpqJn3Bpu5vedchmGSC3VBQ8nda2l8z-oXOZMhvo4DA8FzaARRQ9_Y3bFY_73HOsVqR7LWbfwKT6Uw";
+                var key = "ABQIAAAAEpqJn3Bpu5vedchmGSC3VBQ9uG2adGTfpXAG8R2mA7ZdyKy9AhSNm3OEvnS3m3f8KmHjYsWARmprLw";
 $.getJSON("http://maps.google.com/maps/geo?q="+countryName+"&key="+key+"&sensor=false&output=json&oe=utf-8&callback=?",
                     function(data, textStatus){
                         var locationLat = data.Placemark[0].Point.coordinates[1]

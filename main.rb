@@ -9,15 +9,11 @@ wsdl = $URL
 driver = SOAP::WSDLDriverFactory.new(wsdl).create_rpc_driver
 
 get '/' do
-    #ip = request.env['HTTP_X_REAL_IP']
-    #ipRange = request.env['REMOTE_ADDR']
-    #ip = @env['HTTP_CLIENT_IP']
-    #puts ip
-    #ip2 = @env['HTTP_X_FORWARDED_FOR']
-    #puts ip2
+    #ip = request.env['REMOTE_ADDR']
+    # A split is used as heroku returns multiple IP addresses
+    # for localhosthost use the statement above.
+
     ipArray = request.env['REMOTE_ADDR'].split(/,/)
-    #ip = "192.434.54.34, 34.55.53.22"
-    
     ip = ipArray[0]
     erb :index, :locals => {:ip => ip}
 end
@@ -27,6 +23,9 @@ post '/location' do
     result = request.getGeoIPResult()
     erb :location, :locals => {:ip => params[:ip], :country => result["CountryName"]}
 end
+
+#if using curl or a webrequest with paramater, issue a GET instead of POST
+#in the function below
 
 post '/api/location.:format' do
     request = driver.getGeoIP('IPAddress' => params[:ip])
