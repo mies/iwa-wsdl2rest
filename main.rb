@@ -15,7 +15,7 @@ get '/' do
 
     ipArray = request.env['REMOTE_ADDR'].split(/,/)
     ip = ipArray[0]
-    erb :index, :locals => {:ip => ip}
+    erb :index_yahoo, :locals => {:ip => ip}
 end
 
 post '/location' do
