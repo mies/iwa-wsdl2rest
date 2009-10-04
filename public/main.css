@@ -30,6 +30,11 @@ form input {
 	text-align: center;
 }
 
+form .error{
+	
+	
+}
+
 form .button{
 	display:  block;
 }
