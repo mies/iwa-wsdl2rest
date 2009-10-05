@@ -10,3 +10,14 @@ the API supports the following methods:
 
 Where <FORMAT> is the desired output format.
 Current options are .xml and .json
+
+INSTALLATION:
+
+You'll need ruby and rubygems
+install sinatra:
+
+sudo gem install sinatra
+
+run the app on localhost:
+
+ruby main.rb
